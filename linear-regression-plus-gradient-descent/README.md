@@ -18,11 +18,11 @@ https://spin.atomicobject.com/wp-content/uploads/linear_regression_error1.png
 #### Derivadas parciais de  b e m 
 https://spin.atomicobject.com/wp-content/uploads/linear_regression_gradient1.png
 
-## Dependências do algoritimo
+## Dependências do algoritmo
 
 * numpy
 
-Python 2 e 3 ambos podem ser usados. Use [pip](https://pip.pypa.io/en/stable/) para instalar qualquer dependÊncia.
+Python 2 e 3 ambos podem ser usados. Use [pip](https://pip.pypa.io/en/stable/) para instalar qualquer dependência.
 
 ## Uso
 
