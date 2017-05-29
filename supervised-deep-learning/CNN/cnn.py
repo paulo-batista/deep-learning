@@ -1,5 +1,5 @@
-# Convolutional Neural Network
-
+# Convolutional Neural Network for Iris Tensor rings detector
+# Paulo Batista 
 # Installing Theano
 # pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
 
@@ -24,6 +24,14 @@ classifier = Sequential()
 # Step 1 - Convolution
 classifier.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
 # Step 2 - Pooling
+classifier.add(MaxPooling2D(pool_size = (2, 2)))
+
+# Adding a second convolutional layer
+classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
+classifier.add(MaxPooling2D(pool_size = (2, 2)))
+
+# Adding a second convolutional layer
+classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Adding a second convolutional layer
@@ -62,7 +70,49 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             class_mode = 'binary')
 
 classifier.fit_generator(training_set,
-                         steps_per_epoch = 8000,
+                         steps_per_epoch = 24,
                          epochs = 25,
                          validation_data = test_set,
-                         validation_steps = 2000)
+                         validation_steps = 6)
+
+import numpy as np
+from keras.preprocessing import image
+test_image = image.load_img('dataset/single_prediction/with_or_withnot_anxiety1.jpg', target_size = (64, 64))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)
+result = classifier.predict(test_image)
+training_set.class_indices
+if result[0][0] == 1:
+    prediction1 = 'No patology'
+else:
+    prediction1 = 'Anxiety patology'
+    
+test_image = image.load_img('dataset/single_prediction/with_or_withnot_anxiety2.jpg', target_size = (64, 64))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)
+result = classifier.predict(test_image)
+training_set.class_indices
+if result[0][0] == 1:
+    prediction2 = 'No patology'
+else:
+    prediction2 = 'Anxiety patology'
+    
+test_image = image.load_img('dataset/single_prediction/with_or_withnot_anxiety3.jpg', target_size = (64, 64))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)
+result = classifier.predict(test_image)
+training_set.class_indices
+if result[0][0] == 1:
+    prediction3 = 'No patology'
+else:
+    prediction3 = 'Anxiety patology'
+    
+test_image = image.load_img('dataset/single_prediction/with_or_withnot_anxiety4.jpg', target_size = (64, 64))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)
+result = classifier.predict(test_image)
+training_set.class_indices
+if result[0][0] == 1:
+    prediction4 = 'No patology'
+else:
+    prediction4 = 'Anxiety patology'
